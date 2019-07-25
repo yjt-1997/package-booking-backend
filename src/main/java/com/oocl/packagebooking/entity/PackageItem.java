@@ -1,6 +1,7 @@
 package com.oocl.packagebooking.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.oocl.packagebooking.constrant.PackageStatus;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -30,6 +31,8 @@ public class PackageItem {
     private Long orderTime;
 
     public PackageItem() {
+        orderTime = null;
+        status = PackageStatus.NOT_RECEIVED;
     }
 
     public int getId() {

@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = { "http://localhost:8088", "http://localhost:8081" }, maxAge = 6000)
+@CrossOrigin(maxAge = 6000)
 public class PackageItemController {
 
     @Autowired
@@ -36,5 +36,10 @@ public class PackageItemController {
     @PutMapping("/items")
     public ResponseEntity<PackageItem> findByStatus(@RequestBody  PackageItem packageItem){
         return ResponseEntity.status(HttpStatus.OK).body(packageItemService.save(packageItem));
+    }
+
+    @PutMapping("/items/{id}")
+    public ResponseEntity<PackageItem> orderItem(@PathVariable int id,@RequestBody  PackageItem packageItem)throws Exception{
+        return ResponseEntity.status(HttpStatus.OK).body(packageItemService.orderItem(id,packageItem));
     }
 }
