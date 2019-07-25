@@ -6,8 +6,11 @@ import com.oocl.packagebooking.service.PackageItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class PackageItemController {
@@ -18,5 +21,10 @@ public class PackageItemController {
     @PostMapping("/items")
     public ResponseEntity<PackageItem> save(PackageItem packageItem){
         return ResponseEntity.status(HttpStatus.CREATED).body(packageItemService.save(packageItem));
+    }
+
+    @GetMapping("/items")
+    public ResponseEntity<List<PackageItem>> findAll(){
+        return ResponseEntity.status(HttpStatus.OK).body(packageItemService.findAll());
     }
 }

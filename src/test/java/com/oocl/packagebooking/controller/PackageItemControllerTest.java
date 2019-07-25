@@ -14,6 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -46,6 +47,17 @@ public class PackageItemControllerTest {
                 .content(new ObjectMapper().writeValueAsString(packageItem)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id", is(1)));
+    }
+
+    @Test
+    void should_return_list_package_item() throws Exception {
+        List<PackageItem> items = Arrays.asList(createPackageItem(),createPackageItem());
+
+        when(packageItemService.findAll()).thenReturn(items);
+
+        mvc.perform(get("/items"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
     }
 
     PackageItem createPackageItem(){
