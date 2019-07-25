@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PackageItemService {
@@ -19,5 +20,10 @@ public class PackageItemService {
 
     public List<PackageItem> findAll() {
         return packageItemRepository.findAll();
+    }
+
+    public List<PackageItem> findByStatus(String status) {
+        return packageItemRepository.findAll().stream().filter(
+                packageItem -> packageItem.getStatus().equals(status)).collect(Collectors.toList());
     }
 }

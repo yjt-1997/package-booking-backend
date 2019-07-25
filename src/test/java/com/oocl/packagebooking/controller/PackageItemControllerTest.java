@@ -60,6 +60,17 @@ public class PackageItemControllerTest {
                 .andExpect(jsonPath("$", hasSize(2)));
     }
 
+    @Test
+    void should_return_list_package_item_filter_by_status() throws Exception {
+        List<PackageItem> items = Arrays.asList(createPackageItem(),createPackageItem());
+
+        when(packageItemService.findByStatus(anyString())).thenReturn(items);
+
+        mvc.perform(get("/items/is_received"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
+    }
+
     PackageItem createPackageItem(){
         PackageItem packageItem = new PackageItem();
         packageItem.setId(1);
