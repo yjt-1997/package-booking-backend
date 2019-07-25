@@ -1,7 +1,7 @@
 package com.oocl.packagebooking.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.oocl.packagebooking.Entity.PackageItem;
+import com.oocl.packagebooking.entity.PackageItem;
 import com.oocl.packagebooking.service.PackageItemService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

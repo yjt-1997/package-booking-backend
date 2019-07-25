@@ -1,6 +1,6 @@
-package com.oocl.packagebooking.Entity;
+package com.oocl.packagebooking.entity;
 
-import com.oocl.packagebooking.constrant.PackageStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -20,9 +20,14 @@ public class PackageItem {
 
     @Column(name = "status")
     private String status;
+    @Column(name ="weight")
+    private double weight;
+
+    @Transient
+    private String timeString;
 
     @Column(name = "order_time")
-    private Timestamp orderTime;
+    private Long orderTime;
 
     public PackageItem() {
     }
@@ -59,11 +64,27 @@ public class PackageItem {
         this.status = status;
     }
 
-    public Timestamp getOrderTime() {
+    public Long getOrderTime() {
         return orderTime;
     }
 
-    public void setOrderTime(Timestamp orderTime) {
+    public void setOrderTime(Long orderTime) {
         this.orderTime = orderTime;
+    }
+
+    public String getTimeString() {
+        return timeString;
+    }
+
+    public void setTimeString(String timeString) {
+        this.timeString = timeString;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 }

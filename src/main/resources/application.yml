@@ -11,9 +11,7 @@ spring:
     password:
   jpa:
     hibernate:
-      ddl-auto: validate
-  flyway:
-    enabled: true
+      ddl-auto: update
 
   profiles:
     action: local
